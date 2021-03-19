@@ -1,5 +1,5 @@
 # Privacy Manager system for IoT and Edge Computing
-A privacy system made for my Degree Final Project.
+A privacy system designed by @nicslabdev and developed by @roxax19 as part of his Degree Final Project.
 
 # How to configure
 

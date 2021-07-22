@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft/2019-09/schema",
+  "title": "Data Access Policy",
+  "type": "object",
+  "required": [
+    "id",
+    "rules"
+  ],
+  "properties": {
+    "id": {
+      "type": "number",
+      "description": "Policy id"
+    },
+    "comments":{
+      "type": "string",
+      "description": "Policy purpose"
+    }
+    "rules": {
+      "type": "array",
+      "description": "List of policy rules",
+      "items": {
+        "type": "object",
+        "description": "A policy rule",
+        "required": [
+          "action_type"
+        ],
+        "properties": {
+          "action_type": {
+            "type": "string",
+            "enum": [
+              "GET",
+              "POST",
+              "PUT",
+              "DELETE"
+            ]
+          },
+          "privacy_method": {
+            "type": "string",
+            "enum": [
+              "Exact",
+              "MinNoise",
+              "MedNoise",
+              "MaxNoise",
+              "Generalization",
+              "Encrypted",
+              "Filtered"
+            ]
+          },
+          "resource": {
+            "type": "string",
+            "description": "A query for data"
+          },
+          "filter": {
+            "type": "string",
+            "description": "A filter for the query"
+          },
+          "conditions": {
+            "type": "array",
+            "description": "Policy conditions",
+            "items": {
+              "type": "object",
+              "description": "Policy condition",
+              "properties": {
+                "action requester": {
+                  "type": "object",
+                  "description": "Conditions for requester",
+                  "properties": {
+                    "requester": {
+                      "description": "A JWT token",
+                      "$ref": "https://tools.ietf.org/html/rfc7519"
+                    },
+                    "location": {
+                      "$ref": "https://geojson.org/schema/Feature.json"
+                    },
+                    "max_requests": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "context": {
+                  "type": "object",
+                  "description": "Conditions for context",
+                  "properties": {
+                    "timeofday": {
+                      "type": "string"
+                    },
+                    "data_classification": {
+                      "description": "Can be any value - restricted, private or public",
+                      "type":"string",
+                      "enum": [
+                          "RESTRICTED",
+                          "PUBLIC",
+                          "PRIVATE"
+                          ]
+                    },
+                    "size": {
+                      "description":"Limits the amount of data shared or uploaded",
+                      "type": "string"
+                    },
+                    "data_last_modification_dates": {
+                      "type": "array",
+                      "description": "List of modification dates for data to be accessed/pushed",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "id": 1,
+  "comments":"My smartwatch's policy"
+  "rules": [
+    {
+      "action_type": "GET",
+      "resource": "select * from pulse_data",
+      "filter":"where rate>60",
+      "privacyMethod": "Exact",
+      "conditions": [
+        {
+          "action requester": {
+            "requester": {
+            {    "alg": "HS256",
+                "typ": "JWT"
+            },
+            {"iss": "VeriSign",
+             "sub": "Fitness World Inc",
+              "exp": "1642787238",
+            }
+          }
+          }
+          "context": {
+            "location": {
+              "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                   [
+                       [107.0, 0.0],
+                       [108.0, 0.0],
+                       [108.0, 1.0],
+                       [107.0, 1.0],
+                       [107.0, 0.0]
+                   ]
+                ]
+            },
+           "properties": {
+              "Location": {
+                "Address": "Sports Complex",
+                "Business Name": "University",
+              }
+            },
+            "type": "Feature"
+        },
+        "data_last_modification_dates": ["today()"],
+        "data_classification":"PRIVATE"
+      }
+    }
+   ]
+  },
+    {
+      "action_type": "POST",
+      "conditions": [
+        {
+          "context": {
+            "size": ">1K"
+          }
+        }
+      ]
+    },
+    {
+      "action_type": "DELETE",
+      "conditions": [
+        {
+          "action requester": {
+            "role": {
+            {   "alg": "HS256",
+                "typ": "JWT"
+            },
+            {"iss": "FNMT CA",
+             "sub": "Bob",
+              "exp": "1737534785
+            }
+          }
+          }
+        }
+      ]
+    }
+  ]
+}

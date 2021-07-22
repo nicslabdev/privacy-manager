@@ -1,0 +1,33 @@
+
+{
+  "id": 11,
+  "rules":[
+    {
+      "resource":"pulse_data",
+      "location": {
+          "geometry": {
+           "type": "Polygon",
+           "coordinates": [
+             [
+                       [117.0, 0.0],
+                       [118.0, 0.0],
+                       [118.0, 1.0],
+                       [117.0, 1.0],
+                       [117.0, 0.0]
+             ]
+            ]
+           },
+          "properties": {
+                "Location": {
+                  "Address": "Avda. Cervantes, 29071 MALAGA",
+                  "Business Name": "University of Malaga",
+                }
+          },
+          "type": "Feature"
+        },
+        "Hw":["TPM"],
+        "Connectivity":["5G"],
+        "layer":"1"
+    }
+  ]
+}

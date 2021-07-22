@@ -1,0 +1,70 @@
+
+{
+  "$schema": "http://json-schema.org/draft/2019-09/schema",
+  "title": "Data Management Policy",
+  "type": "object",
+  "required": [
+    "id",
+    "rules"
+  ],
+  "properties": {
+    "id": {
+      "type": "number",
+      "description": "Policy id"
+    },
+    "rules": {
+      "type": "array",
+      "description": "List of data management policy rules",
+      "items": {
+        "type": "object",
+        "description": "A policy rule",
+        "properties": {
+           "resource":{
+              "type": "string",
+              "description": "Resource name"
+           }
+           "layer": {
+              "type": "number",
+              "description": "Hierarchical distance to the data sources"
+           },
+           "Hw": {
+              "type": "array",
+              "description": "List of hw. elements (e.g. TPM, CPU,GPU, etc.)",
+              "items": {
+                "type": "string"
+              }
+           },
+           "connectivity": {
+                      "type": "array",
+                      "description": "List of possible network interfaces",
+                      "items": {
+                        "type": "string"
+                      },
+                      "enum": [
+                        "5G",
+                        "wifi",
+                        "bluetooth",
+                        "ethernet"
+                      ]
+           },
+           "Sw": {
+              "type": "array",
+              "description": "List of sw. elements (e.g. Pytorch, Hypervisors, etc.)",
+              "items": {
+                  "type": "string"
+              }
+            },
+            "location": {
+                "$ref": "https://geojson.org/schema/Feature.json"
+            },
+            "owner": {
+                "description": "A JWT token",
+                "$ref": "https://tools.ietf.org/html/rfc7519"
+            }
+        }
+      }
+    }
+  }
+}
+
+
